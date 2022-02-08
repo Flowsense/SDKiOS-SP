@@ -1,17 +1,6 @@
 import subprocess
 
 from argparse import ArgumentParser
-from git import Repo
-
-
-def git_push(repo_path: str, message: str, tag_name: str):
-    repo = Repo(repo_path)
-    repo.git.add('--all')
-    repo.git.commit('-m', message)
-    repo.git.tag(tag_name)
-
-    origin = repo.remote(name='origin')
-    origin.push(tag_name)
 
 
 def update_file(version_code: str, checksum: str):
@@ -27,8 +16,14 @@ def update_file(version_code: str, checksum: str):
     a_file.close()
 
 
-def calculate_checksum(version_name: str):
+def git_push(repo_path: str, script_path: str, message: str, tag_name: str):
+    #sh ../SDKiOS-SP/git_commands.sh -v="4.2.5" -m="TESTE"
+    result = subprocess.run(['cd', repo_path, '&&',
+                             'sh', f'{script_path}git_commands.sh', f'-v=\"{tag_name}\"', f'-m=\"{message}\"'],
+                            stdout=subprocess.PIPE)
 
+
+def calculate_checksum(version_name: str):
     # swift package compute-checksum ../SDKFlowsenseiOS/build/FlowsenseSDK.xcframework.zip
     result = subprocess.run(['swift', 'package', 'compute-checksum',
                              f'../XCFrameworks_iOS/frameworks/{version_name}.zip'],
@@ -38,7 +33,6 @@ def calculate_checksum(version_name: str):
 
 
 def zip_xcframework(version_name: str):
-
     # ditto -c -k --sequesterRsrc --keepParent ../SDKFlowsenseiOS/build/FlowsenseSDK.xcframework \
     # ../XCFrameworks_iOS/frameworks/version_name.zip
     result = subprocess.run(['ditto', '-c', '-k', '--sequesterRsrc', '--keepParent',
@@ -57,7 +51,7 @@ if __name__ == "__main__":
 
     zip_xcframework(version_code)
     checksum = calculate_checksum(version_code)
-    #git_push('../XCFrameworks_iOS', f'Update the SDK for version:{version_code}', version_code)
+    git_push('../XCFrameworks_iOS', '../SDKiOS-SP/', f'Update the SDK for version:{version_code}', version_code)
 
     update_file(version_code, checksum)
-    #git_push('.',f'Update the SDK for version:{version_code}', version_code)
+    git_push('.', './', f'Update the SDK for version:{version_code}', version_code)
