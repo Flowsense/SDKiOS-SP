@@ -11,13 +11,19 @@ let package = Package(
             name: "FlowsenseSDK",
             targets: ["FlowsenseSDK"]),
     ],
+    dependencies: [
+        .package(
+            url: "https://github.com/aws-amplify/aws-sdk-ios-spm",
+            .branch("main")
+        ),
+    ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .binaryTarget(
             name: "FlowsenseSDK",
             url: "https://raw.githubusercontent.com/Flowsense/SDKiOS-SP/main/frameworks/4.1.1.zip",
-            checksum: "db7b6446a9a9532f652afc36145cdcb0183e5f25ca25d5b192ef7ec2f5ba0db6"
+            checksum: "ac1dc4f7f470eb0609c52bf704927dcbba99aa47022dc4a66c2564ce951ecbcd"
         )
     ]
 )
