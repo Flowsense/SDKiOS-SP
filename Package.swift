@@ -23,7 +23,7 @@ let package = Package(
         .binaryTarget(
             name: "FlowsenseSDK",
             url: "https://raw.githubusercontent.com/Flowsense/SDKiOS-SP/main/frameworks/4.1.1.zip",
-            checksum: "1189f08a88d4b4798f7a23d03ab9bbc5c88a430079c4b497858cd36a55e53314"
+            checksum: "9e765ff50f34a250101ee27247b0a88e9fb9bbf6fc118d7c7abc92b501acd14b"
         )
     ]
 )
