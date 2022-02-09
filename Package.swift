@@ -16,8 +16,8 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         binaryTarget(
             name: "FlowsenseSDK",
-            url: "https://raw.githubusercontent.com/Flowsense/XCFrameworks_iOS/main/frameworks/4.1.1.zip",
-            checksum: "a9325298801b433529fdadc87b6cbbeec2efa57dc525f0835e94a0482c966e10"
+            url: "https://raw.githubusercontent.com/Flowsense/SDKiOS-SP/main/frameworks/4.1.1.zip",
+            checksum: "c8dd8723ebc9d055d186dc66ee84b3011b376619edf74e79de4c3979308768c7"
         )
     ]
 )

@@ -15,8 +15,8 @@ esac
 done
 
 git add .
-git commit -m $MESSAGE --quiet
-git push -u origin main --quiet
-git tag $VERSION
-git push --tags
+git commit -m "$MESSAGE" --quiet
+git push origin main --quiet
+#git tag $VERSION
+#git push --tags
 
