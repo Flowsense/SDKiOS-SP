@@ -1,2 +1,6 @@
 
 SDKiOS-SP.zip
+
+.swiftpm/
+
+.DS_Store
