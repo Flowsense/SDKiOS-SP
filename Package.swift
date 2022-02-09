@@ -14,10 +14,11 @@ let package = Package(
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
-        binaryTarget(
+        .binaryTarget(
             name: "FlowsenseSDK",
             url: "https://raw.githubusercontent.com/Flowsense/SDKiOS-SP/main/frameworks/4.1.1.zip",
-            checksum: "328153d7419c1c2e61d830097d61fe2d1a50f4e0e7245c2f2c0f2c09777d7b15"
+            checksum: "d0e9f9848ed2e3b21bf2b48265e92ecd199407933b6f8af68e5a391b62365e06"
         )
     ]
 )
+

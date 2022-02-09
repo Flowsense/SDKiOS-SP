@@ -23,7 +23,7 @@ def git_push(message: str, tag_name: str):
     command = f"sh git_commands.sh -v=\"{tag_name}\" -m=\"{message}\""
     output = subprocess.run(command, capture_output=True, shell=True)
 
-    print(output.stdout)
+    print("files pushed to git and tagged")
 
 
 def calculate_checksum(version_name: str):
@@ -60,3 +60,4 @@ if __name__ == "__main__":
     update_file(version_code, checksum)
 
     git_push(f'Update the SDK for version: {version_code}', version_code)
+    print("end")
