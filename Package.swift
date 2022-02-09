@@ -21,14 +21,13 @@ let package = Package(
         .binaryTarget(
             name: "FlowsenseSDK",
             url: "https://raw.githubusercontent.com/Flowsense/SDKiOS-SP/main/frameworks/4.1.1.zip",
-            checksum: "99459c014de49566455cebe61d70101f59b1f369b0fa959810e72837b3bf6256"
+            checksum: "760c07fabf0f0c9c2f01a366e0c6ba665e4720cac5763169c2a49de032e8cab5"
         ),
         .target(name: "iOSFlowsenseTargets",
                 dependencies: [
                     .target(name: "FlowsenseSDK"),
                     .product(name: "AWSCore", package: "AWSiOSSDKV2"),
                     .product(name: "AWSKinesis", package: "AWSiOSSDKV2")
-                ],
-                path: "Sources")
+                ])
     ]
 )
