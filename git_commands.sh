@@ -17,6 +17,6 @@ done
 git add .
 git commit -m "$MESSAGE" --quiet
 git push origin main --quiet
-#git tag $VERSION
-#git push --tags
+git tag $VERSION
+git push --tags
 

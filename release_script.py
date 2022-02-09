@@ -21,23 +21,20 @@ def update_file(version_code: str, checksum: str):
 def git_push(message: str, tag_name: str):
     #sh ../SDKiOS-SP/git_commands.sh -v="x.x.x" -m="commit message"
     command = f"sh git_commands.sh -v=\"{tag_name}\" -m=\"{message}\""
-    #output = subprocess.run(command, capture_output=True, shell=True)
-    import os
-    print(command)
-    os.system(command)
+    output = subprocess.run(command, capture_output=True, shell=True)
 
-    #print(output.stdout)
+    print(output.stdout)
 
 
 def calculate_checksum(version_name: str):
     # swift package compute-checksum ../SDKiOS-SP/frameworks/FlowsenseSDK.xcframework.zip
     command = f"swift package compute-checksum ./frameworks/{version_name}.zip"
     output = subprocess.run(command, capture_output=True, shell=True)
-    output = output.stdout.decode("utf-8")
+    output = output.stdout.decode("utf-8").strip()
 
     print(f"checksum:{output}")
 
-    return output.strip()
+    return output
 
 
 def zip_xcframework(version_name: str):
