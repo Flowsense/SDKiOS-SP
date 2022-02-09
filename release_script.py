@@ -7,9 +7,9 @@ def update_file(version_code: str, checksum: str):
     original_file = open("Package.swift", "r")
     list_of_lines = original_file.readlines()
 
-    list_of_lines[24] = f"            url: \"https://raw.githubusercontent.com/Flowsense/SDKiOS-SP/main/" \
+    list_of_lines[22] = f"            url: \"https://raw.githubusercontent.com/Flowsense/SDKiOS-SP/main/" \
                         f"frameworks/{version_code}.zip\",\n"
-    list_of_lines[25] = f"            checksum: \"{checksum}\"\n"
+    list_of_lines[23] = f"            checksum: \"{checksum}\"\n"
 
     a_file = open("Package.swift", "w")
     a_file.writelines(list_of_lines)
