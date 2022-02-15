@@ -8,7 +8,7 @@ def update_file(version_code: str, checksum: str):
     list_of_lines = original_file.readlines()
 
     list_of_lines[22] = f"            url: \"https://github.com/Flowsense/SDKiOS-SP/releases/download/" \
-                        f"v{version_code}/{version_code}.zip\",\n"
+                        f"{version_code}/SDK_{version_code}.zip\",\n"
     list_of_lines[23] = f"            checksum: \"{checksum}\"\n"
 
     a_file = open("Package.swift", "w")
@@ -28,7 +28,7 @@ def git_push(message: str, tag_name: str):
 
 def calculate_checksum(version_name: str):
     # swift package compute-checksum ../SDKiOS-SP/frameworks/FlowsenseSDK.xcframework.zip
-    command = f"swift package compute-checksum ../SDKFlowsenseiOS/build/{version_name}.zip"
+    command = f"swift package compute-checksum ../SDKFlowsenseiOS/build/SDK_{version_name}.zip"
     output = subprocess.run(command, capture_output=True, shell=True)
     output = output.stdout.decode("utf-8").strip()
 
@@ -41,7 +41,7 @@ def zip_xcframework(version_name: str):
     # ditto -c -k --sequesterRsrc --keepParent ../SDKFlowsenseiOS/build/FlowsenseSDK.xcframework \
     # ../SDKiOS-SP/frameworks/version_name.zip
     command = f"ditto -c -k --sequesterRsrc --keepParent ../SDKFlowsenseiOS/build/FlowsenseSDK.xcframework " \
-              f"../SDKFlowsenseiOS/build/{version_name}.zip"
+              f"../SDKFlowsenseiOS/build/SDK_{version_name}.zip"
     subprocess.run(command, capture_output=True, shell=True)
 
     print("xcframework zipped")
