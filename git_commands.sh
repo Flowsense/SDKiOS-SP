@@ -17,7 +17,10 @@ done
 git add .
 git commit -m "$MESSAGE" --quiet
 git push origin main --quiet
-gh release create 4.1.1 ../SDKFlowsenseiOS/build/SDK_4.1.1.zip
+gh release create $VERSION ../SDKFlowsenseiOS/build/SDK_4.1.1.zip
+git tag -fa $VERSION
+git push --tags
+git push --all
 
 
 
